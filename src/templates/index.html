@@ -12,10 +12,14 @@
     <body>Hello! Here you can upload an image<br><br>
         <form action="#" method="post" enctype="multipart/form-data">
             <input type="file" name="file">
+            <input type="text" size="7" name="hex">
             <input type="submit" value="Upload">
         </form>
         {% if pixels %}
-            <h2 id="result">{{ pixels }}</p>
+            <p>
+                <h2 id="result">{{ pixels }}</p>
+                <h3 id="result_custom">{{ pixels_custom }}</h3>
+            </p>
         {% endif %}
     </body>
 </html>
