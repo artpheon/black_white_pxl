@@ -50,10 +50,10 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             count = count_black_white('./tmp/'+filename)
             pixels_black_and_white = 'White pixels: ' + str(count['white']) + ', black pixels: ' + str(count['black'])
-        if request.files['hex']:
-            pixels_custom = count_pixels_by_hex(request.files['hex'])
+            pixels_custom = request.form.get('hex')
+            # pixels_custom = count_pixels_by_hex(request.files['hex'])
         else:
             pixels_custom = 0
         return render_template('index.html', pixels=pixels_black_and_white, pixels_custom=pixels_custom)
-    return render_template('index.html')
+    else: return render_template('index.html')
 app.run(host='0.0.0.0', port=8090)

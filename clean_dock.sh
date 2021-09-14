@@ -1,0 +1,1 @@
+docker rm newc; docker rmi newi;

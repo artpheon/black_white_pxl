@@ -9,7 +9,7 @@ RUN apt-get update && apt-get -y upgrade
 
 RUN apt-get -y install -y wget sudo bash vim software-properties-common
 
-RUN sudo apt install -y python3-opencv && pip install --upgrade pip
+RUN sudo apt install -y python3-opencv && pip install --upgrade pip wheel
 
 RUN pip install flask opencv-python numpy
 

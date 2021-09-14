@@ -7,18 +7,33 @@
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous">
+            function validate()
+            {
+                var hex = document.getElementById('hex_id').value;
+                var hexRGEX = /^#[0-9][A-F]{6}/;
+                var hexResult = hexRGEX.test(hex);
+                if (hexResult == false)
+                {
+                    alert("HEX colour number is incorrect");
+                    return false;
+                }
+                alert("HEX number is correct")
+                return true;
+            }
         </script>
     </head>
     <body>Hello! Here you can upload an image<br><br>
-        <form action="#" method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <input type="text" size="7" name="hex">
-            <input type="submit" value="Upload">
+        <form action="#" method="post" enctype="multipart/form-data" onsubmit="return validate()">
+            <input type="file" name="file" />
+            <input type="text" size="7" id="hex_id" name="hex" placeholder="#FFFFFF" />
+            <input type="submit" value="Upload" />
         </form>
         {% if pixels %}
             <p>
                 <h2 id="result">{{ pixels }}</p>
-                <h3 id="result_custom">{{ pixels_custom }}</h3>
+                {% if pixel_custom %}
+                <h3 id="result_custom">Result for custom colour value: {{ pixels_custom }} pixels</h3>
+                {% endif %}
             </p>
         {% endif %}
     </body>
