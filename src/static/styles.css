@@ -1,0 +1,40 @@
+#hex_id:valid {
+  border: 2px solid black;
+}
+#hex_id {
+  display: block;
+  width: 80px;
+}
+input[type=submit] {
+  padding:5px 15px; background:#ccc; border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+form {
+  margin: 0 auto;
+  width: 50%;
+  border: 1px solid black;
+  padding: 10px;
+}
+h1 {
+  text-align: center;
+}
+h2 {
+  text-align: center;
+}

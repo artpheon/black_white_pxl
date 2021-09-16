@@ -4,6 +4,7 @@ import os
 
 import cv2
 import numpy as np
+import re
 
 
 UPLOAD_FOLDER = '/var/hrobbin/tmp/'
@@ -33,6 +34,7 @@ def count_pixels_by_hex(hex, file):
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "super secret key"
+app.static_folder = 'static'
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -50,10 +52,12 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             count = count_black_white('./tmp/'+filename)
             pixels_black_and_white = 'White pixels: ' + str(count['white']) + ', black pixels: ' + str(count['black'])
-            pixels_custom = request.form.get('hex')
-            # pixels_custom = count_pixels_by_hex(request.files['hex'])
+            hex = str(request.form.get('hex'))
+            print("HEX: |{}|".format(hex))
+            rgb = count_pixels_by_hex(hex, filename)
+            pixels_custom = "Image contains {} pixels of {} colour".format(rgb, hex)
         else:
-            pixels_custom = 0
+            pixels_custom = "N/A"
         return render_template('index.html', pixels=pixels_black_and_white, pixels_custom=pixels_custom)
     else: return render_template('index.html')
-app.run(host='0.0.0.0', port=8090)
+app.run(host='0.0.0.0', port=8090, debug=True)
