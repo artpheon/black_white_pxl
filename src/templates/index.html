@@ -13,19 +13,16 @@
     <body>
         <h1>Hello! Here you can upload an image</h1><br>
         <form action="#" method="post" enctype="multipart/form-data">
-            <label for="file-upload" class="custom-file-upload">
-                <i class="fa fa-cloud-upload"></i> Upload image
-            </label>
             <input id="file-upload" type="file" name="file"/><br /><br /><br />
-            <label for="hex_id">Enter HEX value like: #FFFFFF</label><br /><br />
-            <input type="text" size="7" id="hex_id" required pattern="#[ABCDEF0123456789]{6}" name="hex" placeholder="#FFFFFF" /><br />
+            <label for="hex_id">Enter HEX value like: FFFFFF</label><br /><br />
+            <input type="text" size="7" id="hex_id" required pattern="[ABCDEFabcdef0123456789]{6}" name="hex" placeholder="FFFFFF" /><br />
             <input type="submit" value="SUBMIT" />
         </form>
         {% if pixels %}
             <p>
-                <h2 id="result">{{ pixels }}</p>
-                {% if pixel_custom %}
-                <h3 id="result_custom">{{ pixels_custom }}</h3>
+                <h2 id="result">{{ pixels }}</h2>
+                {% if pixels_custom %}
+                <h2 id="result_custom">{{ pixels_custom }}</h2>
                 {% endif %}
             </p>
         {% endif %}
